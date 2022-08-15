@@ -1,0 +1,23 @@
+
+
+
+
+.slide1 {
+  background: url(https://archo-react.vercel.app/assets/img/before.jpg);
+  background-size: cover;
+  width: 180px;
+  height: 180px;
+}
+.slide2 {
+  background: url(https://archo-react.vercel.app/assets/img/after.jpg);
+  background-size: cover;
+  border-left: 2px solid blue;
+  width: 180px;
+  height: 180px;
+}
+
+
+.slide span img{
+  width: 25%;
+  height: 200px;
+}

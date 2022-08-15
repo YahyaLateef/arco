@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Image Comparison Slider</title>
+    <link rel="stylesheet" type="text/css" href="css/test.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+    </div>
+    <img src="img/after.jpg">
+    <img src="img/before.jpg">
+    <script>
+      const container = document.querySelector(".container");
+const slide2 = document.querySelector(".slide2");
+
+container.addEventListener("mousemove", function (e) {
+  let rect = container.getBoundingClientRect();
+  x = rect.left;
+  let xx = e.clientX;
+  slide2.style.left = xx - x + "px";
+});
+
+    </script>
+  </body>
+  </html>
