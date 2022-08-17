@@ -1,42 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body{
+  margin:0;
+  padding:0;
+  height:1000vh;
 }
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-p {
+.black{
+  position:fixed;
+  top:0;
+  background:#333;
+  width:100%;
+  height:50px;
   
 }
-.container{
-    
+.black ul{
+  list-style-type:none;
+  padding:0;
 }
 
-.slide {
-  width: 100%;
-  height: 100%;
+.black ul li{
+  display:inline-block;
+  width:100px;
+  color:red;
 }
 
-.slide1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: url(https://archo-react.vercel.app/assets/img/before.jpg);
-  background-size: cover;
-}
-
-.slide2 {
-  top: 0;
-  left: 50%;
-  position: absolute;
-  background: url(https://archo-react.vercel.app/assets/img/after.jpg);
-  background-size: cover;
-  border-left: 2px solid blue;
-}

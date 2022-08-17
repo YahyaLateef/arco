@@ -3,25 +3,53 @@
     <meta charset="utf-8">
     <title>Image Comparison Slider</title>
     <link rel="stylesheet" type="text/css" href="css/test.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="slide slide1"></div>
-      <div class="slide slide2"></div>
-    </div>
-    <img src="img/after.jpg">
-    <img src="img/before.jpg">
+    <nav class="navbar fixed-top">
+      <div class="container-fluid black">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blogs
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="blogs.html">Blogs</a></li>
+              <li><a href="post-detail.html">Post-Details</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
     <script>
-      const container = document.querySelector(".container");
-const slide2 = document.querySelector(".slide2");
+      
+$(document).ready(function(){
+  $(window).scroll(function(){
+  	var scroll = $(window).scrollTop();
+	  if (scroll > 300) {
+	    $(".black").css("background" , "rgb(255, 255, 255)");
+	  }
 
-container.addEventListener("mousemove", function (e) {
-  let rect = container.getBoundingClientRect();
-  x = rect.left;
-  let xx = e.clientX;
-  slide2.style.left = xx - x + "px";
-});
-
+	  else{
+		  $(".black").css("background" , "transparent");  	
+	  }
+  })
+})
     </script>
   </body>
   </html>

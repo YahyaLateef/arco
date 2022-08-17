@@ -10,10 +10,10 @@
 </head>
 <body>
 <section>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+<nav class="navbar  fixed-top">
+  <div class="container-fluid black">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <img class="navbar-brand" src="assets/img/logo-light (1).png">
     </div>
     <ul class="nav navbar-nav">
       <li><a href="index.html">Home</a></li>
@@ -222,6 +222,20 @@
     </div>
   </div>
 </section>
-
+<script>
+      
+  $(document).ready(function(){
+    $(window).scroll(function(){
+      var scroll = $(window).scrollTop();
+      if (scroll > 300) {
+        $(".black").css("background" , "#212121");
+      }
+  
+      else{
+        $(".black").css("background" , "transparent");  	
+      }
+    })
+  })
+      </script>
 </body>
 </html>
