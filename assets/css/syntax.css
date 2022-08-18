@@ -84,7 +84,8 @@ position: absolute;
 .context34 h1{
   font-size: 75px;
     margin-bottom: 20px;
-    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
 }
 .context34 a{
   color:#fff;
@@ -265,4 +266,185 @@ text-decoration: none;
 .buttons-page button:hover{
   background-color: transparent;
   color: #c5a47e;
+}
+.image-start{
+  overflow: hidden;
+}
+.image-start img{
+  width: 100%;
+}
+.trat-post{
+    text-align:center ;
+}
+.trat-post h2{
+  font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: #fff;
+}
+.info a{
+  font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 10px;
+    color: #9f9f9f;
+}
+.info p{
+  font-size: 22px;
+    font-weight: 500;
+    color: #9f9f9f;
+}
+.justify-content-center p{
+font-size: 17px;
+color: #9f9f9f;
+line-height: 2;
+font-weight: 400;
+}
+.spacial p{
+  color: #fff;
+  line-height: 1.5;}
+
+  .spacial{
+    color: #fff;
+    line-height: 1.5;
+    font-size: 18px;
+    list-style: none;
+  }
+  .spacial>ul>li{
+    margin: 10px 0;
+  }
+  .justify-content-center{
+    padding: 0px 134px;
+  }
+  .mb-10 img{
+    width: 100%;
+  }
+  .quotes{
+    background: #212121;
+    padding: 30px;
+    margin: 30px 0;
+  }
+  .quotes p{
+    color: #9f9f9f;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 2;
+  }
+  .social{
+    display: inline-block;
+    margin-right: 24em;
+    
+  }
+  .social a{
+    color: #fff;
+    font-size: 13px;
+    margin-right: 20px;
+  }
+  .social a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  .tags2{
+    display: inline-block;
+   
+  }
+  .tags2 a{
+    color: #fff;
+    font-size: 13px;
+    margin-right: 20px;
+  }
+  .tags2 {
+    color: #fff;
+    font-size: 13px;
+    margin-right: 20px;
+  }
+  .tags2 a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  .auth{
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 10px;
+    color: #fff;
+  }
+  .info2 h6{
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #fff;
+  }
+  .social1 a{
+    margin-top: 15px;
+    font-size: 13px;
+    color: #fff;
+    margin-right: 20px;
+  }
+  .social1 a:hover{
+    color: #fff;
+    text-decoration:none ;
+  }
+  .author{
+    padding: 30px;
+    margin-top: 40px;
+    background: #212121;
+    width: 53em;
+  }
+  .page-control{
+    text-align: center;
+  }
+  .btn-group{
+    width: 100%;
+  }
+  .page-control div{
+    padding:0px;
+  }
+  .page-control button{
+    background-color: transparent;
+    border: 1px solid #333;
+   border-radius: 0px;
+   height: 40px;
+   color: #fff;
+  }
+  .page-control button:hover{
+    background-color: transparent;
+    text-decoration: none;
+    outline: none;
+  }
+  .page-control button:focus{
+    color: #fff;
+    background-color: transparent;
+    border-color: #333;
+    outline: none;
+  }
+.comet-info h6{
+  font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color:#fff; 
+}
+.comet-info h6 span{
+  color: #c5a47e;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+.comments-area h5{
+  font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    color: #fff;
+}
+.comments-area{
+  margin-top: 80px;
+}
+.replay{
+  position: absolute;
+  top: 0px;
+  right:0px;
 }
