@@ -64,11 +64,11 @@ img[alt="4"]{
   line-height: 1.5;
   width: 100%;
 }
-.background-contact{
+.background{
   background-image: url(https://archo-react.vercel.app/assets/img/pg2.jpg);
     height: 41em;
-    width: 146%;
-    margin-left: -18em;
+    width: 132%;
+    margin-left: -13em;
     background-repeat: no-repeat;
     background-size: cover;
     filter: brightness(50%);
@@ -164,4 +164,105 @@ button.btn.btn-primary.bbs:before {
     top: -1px;
     left: -12px;
     box-shadow: 0px 45px #c5a47e, 183px 1px #c5a47e, 183px 45px #c5a47e;
+}
+.num{
+  color: #fff;
+  font-size: 60px;
+  font-weight: 400;
+}
+.date{
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+.bert:hover{
+color: #fff;
+text-decoration: none;
+}
+.tags{
+  font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    
+}
+.tags a{
+  color: #c5a47e;
+  padding-right: 20px;
+}
+.tags a:hover{
+  color: #c5a47e;
+  text-decoration: none;
+}
+.tags:before {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #c5a47e;
+  position: absolute;
+  top: 7px;
+  left: 82px;
+}
+.tags:after {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #c5a47e;
+  position: absolute;
+  top: 7px;
+  left: 172px;
+}
+.head-for a{
+  font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: xx-large;
+}
+.head-for a:hover{
+    text-decoration: none;
+    color: #fff;
+    
+}
+.read{
+  margin-top: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-left: 60px;
+    position: relative;
+    color: #fff;
+}
+.read:hover{
+  color: #fff;
+  padding-left: 40px;
+  text-decoration: none;
+}
+.read::before{
+  content: '';
+    width: 50px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 8px;
+    left: 2px;
+}
+.read:hover::before{
+  width: 30px;
+}
+.buttons-page{
+  text-align: center;
+}
+.buttons-page button{
+  color: #c5a47e;
+  width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #eee;
+    font-size: 18px;
+    background-color: transparent;
+}
+.buttons-page button:hover{
+  background-color: transparent;
+  color: #c5a47e;
 }
