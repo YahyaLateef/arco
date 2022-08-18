@@ -425,8 +425,9 @@ font-weight: 400;
     letter-spacing: 1px;
     font-weight: 500;
     color:#fff; 
+    margin-bottom: -5px;
 }
-.comet-info h6 span{
+.comet-info span{
   color: #c5a47e;
     font-size: 12px;
     font-weight: 400;
@@ -447,4 +448,45 @@ font-weight: 400;
   position: absolute;
   top: 0px;
   right:0px;
+}
+.same{
+  font-size: 17px;
+color: #9f9f9f;
+line-height: 2;
+font-weight: 400;
+}
+.replay a{
+  color: #fff;
+}
+.col-md-6 input{
+  color: #fff;
+    padding: 17px;
+    background: #212121;
+    border: 0;
+    border-radius: 0;
+}
+#textAreaExample2{
+  background: #212121;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+}
+.get:before {
+  content: "";
+  height: 8px;
+  width: 1px;
+  background: #c5a47e;
+  position: absolute;
+  top: -14px;
+  left: 1px;
+  box-shadow: 0px 66px #c5a47e, 161px 0px #c5a47e, 161px 66px #c5a47e;}
+  .get:after {
+    content: "";
+    height: 1px;
+    width: 8px;
+    background: #c5a47e;
+    position: absolute;
+    top: -1px;
+    left: -12px;
+    box-shadow: 0px 45px #c5a47e, 183px 1px #c5a47e, 183px 45px #c5a47e;
 }
