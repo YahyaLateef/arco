@@ -1,0 +1,116 @@
+@font-face {
+	font-family: CCFont;
+	src: url(kenyan\ coffee\ rg.ttf);
+  }
+  @font-face {
+	font-family: Curve;
+	src: url(Giliams-Regular.ttf);
+  }
+* {
+	box-sizing: border-box;
+  }
+  
+  img {
+	max-width: 100%;
+	width: 100%;
+  }
+  
+  
+  
+  .wrap {
+	position: relative;
+	z-index: 100;
+	width: 100%;
+	padding: 0 60px;
+	overflow: hidden;
+  }
+  
+  .wrap:after {
+	content:'';
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+   
+  }
+  
+  .slider {
+	position: relative;
+	z-index: 200;
+	padding: 0 0px;
+	margin: 5rem auto;
+	width: 100%;
+  }
+  
+  .slick-arrow {
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: -25px;
+	border: none;
+	background: transparent;
+	color: #333;
+	font-family: monospace;
+	font-size: 5rem;
+	z-index: 300;
+	outline: none;
+  }
+  
+  .slick-prev {
+	left: -50px;
+	text-align: left;
+	color: #333 !important;
+	background-color: blue !important;
+  }
+  
+  .slick-next {
+	right: -50px;
+	text-align: right;
+	color: #333 !important;
+	background-color: blue !important;
+  }
+  
+  
+  
+  .item.slick-slide {
+	width: 600px;
+	height: 400px !important;
+	transition: transform .4s;
+	position: relative; 
+	margin:0px 20px;
+  }
+  
+  .slick-slide:after {
+	content:'';
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: transform .4s;
+  }
+  .cont{
+	text-align: center;
+  } 
+  .tekofont{
+	color: #b19777;
+    font-weight: 400;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+	font-family: CCFont;
+  }
+  .playfont{
+	font-weight: 500;
+    font-size: 40px;
+    letter-spacing: 2px;
+	color: #fff;
+	font-family: 'Curve';
+  }
+  
