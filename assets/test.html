@@ -23,92 +23,118 @@
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://www.cssscript.com/demo/image-comparison-pixelcompare/js/pixelcompare.js?v2"></script>
+<script src="../js/pixelcompare.js"></script>
+<link rel="stylesheet" href="../css/pixelcompare.css">
+    <link rel="stylesheet" href="./style.css">
+
   </head>
   <body>
-    <section style="background-color: #252531;"> 
-      <div class="container-fluid">
-        <div class="container">
-          <div class="best-main-head"><h6 class="tekofont">Best Works</h6><h4 class="playfont">Our Portfolio</h4></div>
-        </div>
-    <div class="wrap">  
-      <div class="slider">
-        
-        <div class="item">
-          <img src="https://archo-react.vercel.app/assets/img/portfolio/metro/01.jpg" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1489440543286-a69330151c0b?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1490718687940-0ecadf414600?dpr=1&auto=format&fit=crop&w=568&h=378&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1507032336878-13f159192baa?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1506268919522-a927511962a9?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1501879779179-4576bae71d8d?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        <div class="item">
-          <img src="https://images.unsplash.com/photo-1511965682784-5ec68f744ea1?dpr=1&auto=format&fit=crop&w=568&h=319&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-          <div class="cont"><h6 class="tekofont">art & illustration</h6><h4 class="playfont">Innovation and Crafts.</h4></div>
-        </div>
-        
+    <section> 
+      <div class="container">
+       <div class="wrapper">
+    <div class="images">
+      <div class="img-1">
+        <img style="max-width: 100%;" src="https://archo-react.vercel.app/assets/img/after.jpg" alt="">
+      </div>
+      <div class="img-2">
+        <img src='https://archo-react.vercel.app/assets/img/before.jpg' class="resizeimg" alt="">
       </div>
     </div>
+    <div class="slider">
+      <div class="drag-line">
+        <span></span>
+      </div>
+      <input type="range" min="0" max="100" value="50">
     </div>
+  </div>
+      </div>
     </section> 
     
     <script>
-     $('.slider').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  arrows: true,
-  dots: false,
-  centerMode: true,
-  variableWidth: true,
-  infinite: true,
-  focusOnSelect: true,
-  cssEase: 'linear',
-  touchMove: true,
-  prevArrow:'<button class="slick-prev"> < </button>',
-  nextArrow:'<button class="slick-next"> > </button>',
-  
-  //         responsive: [                        
-  //             {
-  //               breakpoint: 576,
-  //               settings: {
-  //                 centerMode: false,
-  //                 variableWidth: false,
-  //               }
-  //             },
-  //         ]
+    const slider = document.querySelector(".slider input");
+const img = document.querySelector(".images .img-2");
+const dragLine = document.querySelector(".drag-line");
+const fimg = document.querySelector(".resizeimg");
+const parentWidth = document.querySelector(".wrapper");
+const sliderm = document.querySelector(".slider");
+const title = document.querySelector(".Title");
+const draggable = document.querySelector(".drag-line > span");
+
+window.addEventListener("load", (event) => {
+  console.log("ss");
+  let resizedHt = parentWidth.clientWidth;
+  fimg.style.width = resizedHt + "px";
 });
 
+slider.oninput = (e) => {
+  draggable.classList.add("ccc");
+  console.log("drraed");
+  let sliderVal = slider.value;
+  let x = (dragLine.style.left = sliderVal + "%");
+  let y = parseInt(x);
+  img.style.width = sliderVal + "%";
 
-var imgs = $('.slider img');
-imgs.each(function(){
-  var item = $(this).closest('.item');
-  item.css({
-    'background-image': 'url(' + $(this).attr('src') + ')', 
-    'background-position': 'center',            
-    '-webkit-background-size': 'cover',
-    'background-size': 'cover', 
-  });
-  $(this).hide();
-});
+  //add spacing to left and right of img
+  if (y >= 95) {
+    img.style.width = "95%";
+    dragLine.style.left = "95%";
+  } else if (y <= 5) {
+    img.style.width = "5%";
+    dragLine.style.left = "5%";
+  }
+
+  //hide show title of variant
+  switch (true) {
+    case y >= 60:
+      title.lastElementChild.classList.add("opac");
+      title.firstElementChild.classList.remove("opac");
+      break;
+    case y <= 40:
+      title.lastElementChild.classList.remove("opac");
+      title.firstElementChild.classList.add("opac");
+      break;
+    case y >= 41 && y <= 59:
+      title.lastElementChild.classList.remove("opac");
+      title.firstElementChild.classList.remove("opac");
+      break;
+  }
+};
+//adding width to fied image with the width respect to compare parent container on resize
+window.addEventListener("resize", (event) => {
+  let resizedHt = parentWidth.clientWidth
+  fimg.style.width = resizedHt + 'px'
+})
+
+// function process_touchmove(ev) {
+// // Call preventDefault() to prevent any further handling
+//     ev.preventDefault();
+// }
+
+// Doesnt matter for now awaitig confirmation
+
+//     // Setup our function to run on various events
+//         const detectEventfunction = (event) => {
+//         if (event.type == 'mousedown') {
+//             draggable.classList.add('oopac')
+//         }
+//         if (event.type == 'touchstart') {
+//             draggable.classList.add('oopac')
+//         }
+//         if (event.type == 'touchend') {
+//             draggable.classList.remove('oopac')
+//         }
+//         if (event.type == 'mouseup') {
+//             draggable.classList.remove('oopac')
+//         }
+//     };
+//     // Add our event listeners
+//     window.addEventListener('mousedown', detectEventfunction, false);
+//     window.addEventListener('mouseup', detectEventfunction, false);
+//     window.addEventListener('touchstart', detectEventfunction, false);
+//     window.addEventListener('touchend', detectEventfunction, false);
+//
+
     </script>
   </body>
   </html>
