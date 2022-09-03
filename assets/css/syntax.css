@@ -2,16 +2,10 @@
   font-family: CCFont;
   src: url(kenyan\ coffee\ rg.ttf);
 }
-<<<<<<< HEAD
 @font-face {
   font-family: Curve;
   src: url(Giliams-Regular.ttf);
 }
-=======
-
->>>>>>> 48fbbf148cb6841efe90eb96408dc3f954dc0b71
-
-
 .slide1 {
   background: url(https://archo-react.vercel.app/assets/img/before.jpg);
   background-size: cover;
@@ -34,11 +28,7 @@
 .navbar{
   position: fixed;
   z-index: 3;
-<<<<<<< HEAD
-  
-
   min-height: 80px !important;
-
 }
 .navbar-nav li a{
   font-size: 13px;
@@ -52,15 +42,15 @@
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
   background-color: transparent !important;
-}
-=======
+
+
   background-color: transparent;
   
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   min-height: 80px !important;
 
 }
->>>>>>> 48fbbf148cb6841efe90eb96408dc3f954dc0b71
+
 
 .black{
   position:fixed;
@@ -72,7 +62,6 @@
 }
 img[alt="1"]{
   filter: brightness(50%);
-<<<<<<< HEAD
   height: 1054px !important;
   width: 1926;
 }
@@ -89,9 +78,7 @@ img[alt="3"]{
 img[alt="4"]{
   filter: brightness(50%);
   height: 1054px !important;
-  width: 1926;
-=======
-  
+  width: 1926;  
 }
 img[alt="2"]{
   filter: brightness(50%);
@@ -103,8 +90,6 @@ img[alt="3"]{
 }
 img[alt="4"]{
   filter: brightness(50%);
-  
->>>>>>> 48fbbf148cb6841efe90eb96408dc3f954dc0b71
 }
 .contact{
   background-color: #212121;
@@ -434,11 +419,7 @@ font-weight: 400;
     color: #fff;
     text-decoration:none ;
   }
-<<<<<<< HEAD
-  .authors{
-=======
   .author{
->>>>>>> 48fbbf148cb6841efe90eb96408dc3f954dc0b71
     padding: 30px;
     margin-top: 40px;
     background: #212121;
@@ -541,7 +522,6 @@ font-weight: 400;
     top: -1px;
     left: -12px;
     box-shadow: 0px 45px #c5a47e, 183px 1px #c5a47e, 183px 45px #c5a47e;
-<<<<<<< HEAD
 }
 .AEC{
   list-style: none;
@@ -1789,6 +1769,4 @@ border-radius: 50%;
   position: relative;
   top: -60px;
   left: 91px;
-=======
->>>>>>> 48fbbf148cb6841efe90eb96408dc3f954dc0b71
 }
