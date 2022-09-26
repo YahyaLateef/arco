@@ -11,11 +11,30 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 </head>
 <body style="background: #181818;">
+  <div class="cursor"></div>
   <section>
-    <nav class="navbar fixed-top">
-    
+    <!--<nav class="navbar fixed-top black">
       <div class="container-fluid black" style="padding-top: 1em;">
         <div class="navbar-header" style="padding-left: 19em;">
           <div class="navbar-brand">
@@ -37,14 +56,52 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
+    </nav>-->
+    <nav class="navbar navbar-expand-md  fixed-top black" style="background-color: ;">
+      <div class="navbar-header" style="padding-left: 15%;">
+        <div class="navbar-brand">
+          <img class="animate" src="assets/img/logo-light (1).png" style="width: 100px; height: 30px;">
+        </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav" style="padding:45%;">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.html">Portfolio</a>
+          </li> 
+          <li class="dropdown" style="padding-top: 25px;">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blogs
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="blogs.html" class="gret">Blogs</a></li>
+              <li><a href="post-detail.html" class="gret1">Post-Details</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li> 
+          
+        </ul>
+      </div>  
     </nav>
     </section>
-<section>
+<section style="margin-top: 6%;">
   <div class="container">
     
     <div class="background" style="background-image: url(assets/img/pg1.jpg);"></div>
-    <div class="context34"  style="top: 21em;
-    left: 48.5em;">
+    <div class="context34" style="top: 33%;
+    left: 44%;">
 
       <h1>About Us</h1>
       <div class="path">
@@ -109,7 +166,7 @@
     <div class="main-header text-center" style="margin: 80px 0px;"><h3>Best Features.</h3><div class="tex-bg"><h1>Services</h1></div></div>
     <div class="row">
       <div class="col-lg-4">
-        <div class="card hover-img trap1" style="width: 23em;">
+        <div class="card hover-img trap1" style="width: 100%;">
           <div class="card-body">
             <img src="assets/img/home(2).png" style="margin-bottom: 30px; width: 60px; height: 70px;">
             <h6 class="card-title">Architecture</h6>
@@ -121,7 +178,7 @@
       </div>
       <div class="col-lg-4">
     
-        <div class="card hover-img trap2" style="width: 23em;">
+        <div class="card hover-img trap2" style="width: 100%;">
           <div class="card-body">
             <img src="assets/img/living.png" style="margin-bottom: 30px;width: 60px; height: 70px;">
             <h6 class="card-title">Interior Design</h6>
@@ -133,7 +190,7 @@
       </div>
       <div class="col-lg-4">
     
-        <div class="card hover-img trap3" style="width: 23em;">
+        <div class="card hover-img trap3" style="width:100%;">
           <div class="card-body">
             <img src="assets/img/interior-design(2).png" style="margin-bottom: 30px;width: 60px; height: 70px;">
             <h6 class="card-title">3D Modeling</h6>
@@ -147,7 +204,7 @@
   </div>
     
 </section>
-<section style="padding: 120px 0;">
+<section style="padding: 120px 0;" id="bzz">
   <div class="container">
     <div class="items">
       <div>
@@ -223,6 +280,7 @@
       </div>
   </div>
   </div>
+  
 </section>
     
 <section style="padding: 120px 0;">
@@ -412,6 +470,59 @@ padding: 100px 0;">
     </div>
   </div>
 </section>
+<script>
+  const updateProperties = (elem, state) => {
+elem.style.setProperty('--x', `${state.x}px`)
+elem.style.setProperty('--y', `${state.y}px`)
+elem.style.setProperty('--width', `${state.width}px`)
+elem.style.setProperty('--height', `${state.height}px`)
+elem.style.setProperty('--radius', state.radius)
+elem.style.setProperty('--scale', state.scale)
+}
+
+document.querySelectorAll('.cursor').forEach(cursor => {
+let onElement
+
+const createState = e => {
+const defaultState = {
+  x: e.clientX,
+  y: e.clientY,
+  width: 40,
+  height: 40,
+  radius: '50%'
+}
+
+const computedState = {}
+
+if (onElement != null) {
+  const { top, left, width, height } = onElement.getBoundingClientRect()
+  const radius = window.getComputedStyle(onElement).borderTopLeftRadius
+
+  computedState.x = left + width / 2
+  computedState.y = top + height / 2
+  computedState.width = width
+  computedState.height = height
+  computedState.radius = radius
+}
+
+return {
+  ...defaultState,
+  ...computedState
+}
+}
+
+document.addEventListener('mousemove', e => {
+const state = createState(e)
+updateProperties(cursor, state)
+})
+
+document.querySelectorAll('a, button').forEach(elem => {
+elem.addEventListener('mouseenter', () => (onElement = elem))
+elem.addEventListener('mouseleave', () => (onElement = undefined))
+})
+})
+
+ </script>
 <script>
   $(document).ready(function(){
      

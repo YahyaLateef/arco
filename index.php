@@ -24,10 +24,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-
 </head>
-<body>
-<section>
+<body onload="myFunction()" style="margin:0;">
+  <div id="biggest-loader"></div>
+    <div id="loader1"><h1>Loading</h1></div>
+    <div id="loader">
+    </div>
+  <div class="cursor"></div>
+  <div id="super" style="display: none;">
+<section class="animate-bottom">
 <!--<nav class="navbar fixed-top black" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
   <div class="container-fluid black" style="padding-top: 1em;">
     <div class="navbar-header" style="padding-left: 19em;">
@@ -336,7 +341,7 @@
 
 </section>
      
-<section style="background-color: #f8f4f3;padding: 120px 0;">
+<section class="animate-bottom" style="background-color: #f8f4f3;padding: 120px 0;">
   <div class="container">
     <div class="good-head" style="margin: 80px 0px;"><h3>Best Features.</h3><div><h1>Our Services</h1></div></div>
     <div class="row">
@@ -379,7 +384,7 @@
   </div>
 </section>
      
-<section style="background-color: #252531;"> 
+<section class="animate-bottom" style="background-color: #252531;"> 
   <div class="container-fluid">
     <div class="container" style="margin-top:5em;">
       <div class="best-main-head"><h6 class="tekofont">Best Works</h6><h4 class="playfont">Our Portfolio</h4></div>
@@ -413,7 +418,7 @@
 </div>
 </div>
 </section> 
-<section style="margin-bottom: 120px;">
+<section class="animate-bottom" style="margin-bottom: 120px;">
   <div class="container">
     <div class="row">
       <div class="col-lg-5" style="margin-top: 6em;">
@@ -447,7 +452,7 @@
   </div>
 </section>
      
-<section style="padding: 120px 0;">
+<section class="animate-bottom" style="padding: 120px 0;">
   <div class="bg-img-bath" style="background-image:url(assets/img/bath.jpg)"></div>
     <div class="container" style="margin-top: 10em;">
       <div class="head1" style="margin: 80px 0px;">
@@ -480,7 +485,7 @@
       </div>
     </div>
 </section>
-<section style="padding: 120px 0;">
+<section class="animate-bottom" style="padding: 120px 0;">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -514,7 +519,7 @@
     </div>
   </div>
 </section>
-<section style="padding: 120px 0;">
+<section class="animate-bottom" style="padding: 120px 0;">
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
@@ -573,12 +578,12 @@
         </div>
         </div>
       </div>
-    </div>
+    
      
     <div class="bg-repeat-dot" style="background-image: url(assets/img/dots.png);"></div>
   </div>
 </section>
-<section style="padding: 120px 0;">
+<section class="animate-bottom" style="padding: 120px 0;">
   <div class="container">
     <div class="items toyi">
       <div>
@@ -656,7 +661,7 @@
   </div>
 </section>
      
-<section style="background-color: #f8f4f3;padding: 120px 0; padding-bottom: 300px;">
+<section class="animate-bottom" style="background-color: #f8f4f3;padding: 120px 0; padding-bottom: 300px;">
   <div class="container">
     <div class="trat1" style="margin: 80px 0px;">
 
@@ -667,7 +672,7 @@
       <div class="col-lg-6">
         <div class="card" >
      
-          <img class="card-img-top" style="background-image: url(assets/img/couch.jpg); background-size: 40em 30em;
+          <img class="card-img-top" style="background-image: url(assets/img/couch.jpg);background-size: 54em 40em;
           background-repeat: no-repeat;">
           <div class="card-body laal">
             <div class="info">
@@ -688,7 +693,7 @@
     
       <div class="col-lg-6">
         <div class="card" >
-          <img class="card-img-top" style="background-image: url(assets/img/blog1.jpg); background-size: 40em 30em;
+          <img class="card-img-top" style="background-image: url(assets/img/blog1.jpg);background-size: 54em 40em;
           background-repeat: no-repeat;">
           <div class="card-body laal">
             <div class="info">
@@ -706,10 +711,9 @@
         </div>
       </div>
       </div>
-    </div>
   </div>
 </section>
-<section style="background: #252531;
+<section class="animate-bottom" style="background: #252531;
 width: calc(100% - 50px);
 margin-left: 25px;
 margin-bottom: 25px;
@@ -832,7 +836,74 @@ padding: 100px 0;">
     </div>
   </div>
 </section>
-     
+</div>
+<script>
+  var myVar;
+  
+  function myFunction() {
+    myVar = setTimeout(showPage, 3000);
+  }
+  
+  function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("loader1").style.display = "none";
+    document.getElementById("biggest-loader").style.display = "none";
+    document.getElementById("super").style.display = "block";
+  }
+  </script>
+     <script>
+      const updateProperties = (elem, state) => {
+  elem.style.setProperty('--x', `${state.x}px`)
+  elem.style.setProperty('--y', `${state.y}px`)
+  elem.style.setProperty('--width', `${state.width}px`)
+  elem.style.setProperty('--height', `${state.height}px`)
+  elem.style.setProperty('--radius', state.radius)
+  elem.style.setProperty('--scale', state.scale)
+}
+
+document.querySelectorAll('.cursor').forEach(cursor => {
+  let onElement
+
+  const createState = e => {
+    const defaultState = {
+      x: e.clientX,
+      y: e.clientY,
+      width: 40,
+      height: 40,
+      radius: '50%'
+    }
+
+    const computedState = {}
+
+    if (onElement != null) {
+      const { top, left, width, height } = onElement.getBoundingClientRect()
+      const radius = window.getComputedStyle(onElement).borderTopLeftRadius
+
+      computedState.x = left + width / 2
+      computedState.y = top + height / 2
+      computedState.width = width
+      computedState.height = height
+      computedState.radius = radius
+    }
+
+    return {
+      ...defaultState,
+      ...computedState
+    }
+  }
+
+  document.addEventListener('mousemove', e => {
+    const state = createState(e)
+    updateProperties(cursor, state)
+  })
+
+  document.querySelectorAll('a, button').forEach(elem => {
+    elem.addEventListener('mouseenter', () => (onElement = elem))
+    elem.addEventListener('mouseleave', () => (onElement = undefined))
+  })
+})
+
+</script>
 <script>
   const slider = document.querySelector(".slider input");
 const img = document.querySelector(".images .img-2");
@@ -918,6 +989,10 @@ fimg.style.width = resizedHt + 'px'
 //
 
   </script>
+  <script>
+    $(document).ready(function(){
+  $(window).scroll(function(){
+  </script>
 <script>
   $(document).ready(function(){
      
@@ -940,7 +1015,7 @@ let xx = e.clientX;
 slide2.style.left = xx - x + "px";
 });
 
-</script>
+</script> 
 
 <script>
   $('.slider').slick({
@@ -1043,5 +1118,6 @@ $(window).scroll(function() {
    $(this).hide();
  });
      </script>
-</body>
+ </body>
+
 </html>
