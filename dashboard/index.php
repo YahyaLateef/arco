@@ -6,7 +6,7 @@ if(!$conn){
     echo 'Connection error: '. mysqli_connect_error();
 }
 //write querie for all
-$sql = 'SELECT name,email,id FROM users';
+$sql = 'SELECT name,email,user_id FROM users';
 $result = mysqli_query($conn,$sql); 
 $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
@@ -25,7 +25,7 @@ mysqli_close($conn);
 							<?php echo htmlspecialchars($user['email'])?>
 					</div>
 					<div class="card-action right-align">
-						<a class="brand-text" href="blog-edit.php?id=<?php echo $user ['id'] ?>">more info</a>
+						<a class="brand-text" href="blogs.php">more info</a>
 					</div>
 				</div>
 			   </div>

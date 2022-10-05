@@ -12,8 +12,8 @@ $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 if ($db->connect_error) {  
   die("Connection failed: " . $db->connect_error);  
 }
-$content = "";
-$errors = array('content'=>"");
+$content = $title = "";
+$errors = array('content'=>"",'title'=>"");
 // If file upload form is submitted 
 $status = $statusMsg = ''; 
 if(isset($_POST["submit"])){ 
@@ -50,7 +50,16 @@ if(isset($_POST["submit"])){
                 
             }
         } 
-        $insert = $db->query("INSERT into blogs(images,content) VALUES ('$imgContent','$content')");
+        if(empty($_POST["title"])) { 
+            $errors['title'] = 'title is required <br  />';
+        }else{
+            $title = $_POST['title'];
+            if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
+                $errors['title'] = 'Title must be letters and spaces only <br  />';
+                
+            }
+        } 
+        $insert = $db->query("INSERT into blogs(images,conten,title) VALUES ('$imgContent','$content','$title')");
         header('location:index.php');
     }
 
@@ -67,8 +76,12 @@ echo $statusMsg;
     <label>Content:</label>
     <div class="red-text"><?php echo $errors['content']; ?></div>
     <input type="text" name="content" value="<?php echo $content ?>">
-    <input type="hidden" name="user-id" value="<?php echo $user_id ?>">
+    <label>Title:</label>
+    <div class="red-text"><?php echo $errors['title']; ?></div>
+    <input type="text" name="title" value="<?php echo $title ?>">
+    <input type="hidden" name="user-id" value="<?php echo "1" ?>">
     <label class="brand-text">Select Image File:</label>
+
     <input type="file" name="image" class="brand-text">
     <input type="submit" name="submit" value="Upload" class="btn brand a-depth-0 uplod_image">
 </form>

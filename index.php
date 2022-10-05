@@ -41,18 +41,18 @@
       </div>
     </div>
     <ul class="nav navbar-nav" style="padding-left: 39em;">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="about.php">About</a></li>
+      <li><a href="portfolio.php">Portfolio</a></li>
       <li class="dropdown">
         <a class="dropdown-toggl" data-toggle="dropdown" href="#">Blogs
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="blogs.html">Blogs</a></li>
-          <li><a href="post-detail.html">Post-Details</a></li>
+          <li><a href="blogs.php">Blogs</a></li>
+          <li><a href="post-detail.php">Post-Details</a></li>
         </ul>
       </li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.php">Contact</a></li>
     </ul>
   </div>
 </nav>-->
@@ -73,22 +73,22 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="about.php">About</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="portfolio.html">Portfolio</a>
+        <a class="nav-link" href="portfolio.php">Portfolio</a>
       </li> 
       <li class="dropdown" style="padding-top: 25px;">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blogs
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="blogs.html" class="gret">Blogs</a></li>
-          <li><a href="post-detail.html" class="gret1">Post-Details</a></li>
+          <li><a href="blogs.php" class="gret">Blogs</a></li>
+          <li><a href="post-detail.php" class="gret1">Post-Details</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="contact.php">Contact</a>
       </li> 
       
     </ul>
@@ -352,7 +352,7 @@
             <h6 class="card-title2">Architecture</h6>
             <p class="card-text44">Cras mollis turpis a ipsum ultes, nec<br>cond imentum ipsum consequat.</p>
 
-            <a href="about.html" class="brownie2">Read more</a>
+            <a href="about.php" class="brownie2">Read more</a>
           </div>
         </div>
       </div>
@@ -364,7 +364,7 @@
             <h6 class="card-title2">Interior Design</h6>
             <p class="card-text44">Cras mollis turpis a ipsum ultes, nec<br>cond imentum ipsum consequat.</p>
 
-            <a href="about.html" class="brownie2">Read more</a>
+            <a href="about.php" class="brownie2">Read more</a>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@
             <h6 class="card-title2">3D Modeling</h6>
             <p class="card-text44">Cras mollis turpis a ipsum ultes, nec<br>cond imentum ipsum consequat.</p>
 
-            <a href="about.html" class="brownie2">Read more</a>
+            <a href="about.php" class="brownie2">Read more</a>
           </div>
         </div>
       </div>
@@ -676,13 +676,13 @@
           background-repeat: no-repeat;">
           <div class="card-body laal">
             <div class="info">
-              <a href="post-detail.html">ALEX SMITH</a>
-              <a href="post-detail.html">Aug 06 2022</a>
+              <a href="post-detail.php">ALEX SMITH</a>
+              <a href="post-detail.php">Aug 06 2022</a>
             </div>
             <div class="font-custom">
-              <h5><a href="post-detail.html">In Good Taste: Mark Finlay Architects and<br>Interiors</a></h5>
+              <h5><a href="post-detail.php">In Good Taste: Mark Finlay Architects and<br>Interiors</a></h5>
             </div>
-            <a href="post-detail.html">
+            <a href="post-detail.php">
 
               Read More
             </a>
@@ -697,13 +697,13 @@
           background-repeat: no-repeat;">
           <div class="card-body laal">
             <div class="info">
-              <a href="post-detail.html">ALEX SMITH</a>
-              <a href="post-detail.html">Aug 06 2022</a>
+              <a href="post-detail.php">ALEX SMITH</a>
+              <a href="post-detail.php">Aug 06 2022</a>
             </div>
             <div class="font-custom">
-              <h5><a href="post-detail.html">Five Things You Should Know<br>About Modern Furniture.</a></h5>
+              <h5><a href="post-detail.php">Five Things You Should Know<br>About Modern Furniture.</a></h5>
             </div>
-            <a href="post-detail.html">
+            <a href="post-detail.php">
 
               Read More
             </a>
@@ -773,7 +773,7 @@ padding: 100px 0;">
       </div>
       <ul class="AEC">
         <li>
-          <a href="blogs.html">
+          <a href="blogs.php">
             <img src="assets/img/couch.jpg" style="width: 100px;height: auto;position: absolute;left: -28px;">
             <div class="context64">
               <p style="font-size: 13px;">The Start-Up Ultimate Guide to Make<br>Your WordPress Journal.</p>
@@ -783,7 +783,7 @@ padding: 100px 0;">
           </a>
         </li>
         <li>
-          <a href="blogs.html">
+          <a href="blogs.php">
  
             <img src="assets/img/blog1.jpg" style="width: 100px;height: auto;position: absolute;left: -28px;">
             <div class="context64">

@@ -21,18 +21,18 @@
       </div>
     </div>
     <ul class="nav navbar-nav" style="padding-left: 39em;">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="about.php">About</a></li>
+      <li><a href="portfolio.php">Portfolio</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blogs
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="blogs.html">Blogs</a></li>
-          <li><a href="post-detail.html">Post-Details</a></li>
+          <li><a href="blogs.php">Blogs</a></li>
+          <li><a href="post-detail.php">Post-Details</a></li>
         </ul>
       </li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.php">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -44,11 +44,11 @@
     left: 45.5em;">
       <h1>Post Details</h1>
       <div class="path">
-        <a href="index.html">Home</a>
+        <a href="index.php">Home</a>
         <span>/</span>
-        <a href="about.html">Blog</a>
+        <a href="about.php">Blog</a>
         <span>/</span>
-        <a href="about.html" class="pathy">Post-Details</a>
+        <a href="about.php" class="pathy">Post-Details</a>
       </div>
     </div>
   </div>
@@ -59,11 +59,11 @@
       <h2>Build a Beautiful Blog With Ease</h2>
       <div class="info">
         <p>
-          <a href="/archo/post-detail.html">ALEX SMITH</a>
+          <a href="/archo/post-detail.php">ALEX SMITH</a>
          /
-          <a href="/archo/post-detail.html">August 6 , 2022</a>
+          <a href="/archo/post-detail.php">August 6 , 2022</a>
           /
-          <a href="/archo/post-detail.html">Web Design</a>
+          <a href="/archo/post-detail.php">Web Design</a>
         </p>
       </div>
     </div>
@@ -356,7 +356,7 @@ padding: 100px 0;">
       </div>
       <ul class="AEC">
         <li>
-          <a href="blogs.html">
+          <a href="blogs.php">
             <img src="assets/img/couch.jpg" style="width: 100px;height: auto;position: absolute;left: -28px;">
             <div class="context64">
               <p style="font-size: 13px;">The Start-Up Ultimate Guide to Make<br>Your WordPress Journal.</p>
@@ -366,7 +366,7 @@ padding: 100px 0;">
           </a>
         </li>
         <li>
-          <a href="blogs.html">
+          <a href="blogs.php">
  
             <img src="assets/img/blog1.jpg" style="width: 100px;height: auto;position: absolute;left: -28px;">
             <div class="context64">
