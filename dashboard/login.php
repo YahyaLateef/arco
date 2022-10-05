@@ -18,8 +18,8 @@ if(isset($_POST['submit'])){
         }
     }
     //check username
-    if(empty($_POST['username'])){
-        $errors['username'] = 'a username is required <br  />';
+    if(empty($_POST['name'])){
+        $errors['name'] = 'a name is required <br  />';
     }else{
         $name = $_POST['name'];
         if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
@@ -85,8 +85,8 @@ body {
         <div class="container grey-text">
             <form class="white" action="login.php" method="POST">
                 <label>Username:</label>
-                <div class="red-text"><?php echo $errors['username']; ?></div>
-                <input type="text" name="username" value="<?php echo $username ?>">
+                <div class="red-text"><?php echo $errors['name']; ?></div>
+                <input type="text" name="name" value="<?php echo $name ?>">
                 <label>Your email:</label>
                 <div class="red-text"><?php echo $errors['email'];  ?></div>
                 <input type="text" name="email" value="<?php echo $email ?>">

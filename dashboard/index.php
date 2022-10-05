@@ -8,7 +8,7 @@ if(!$conn){
 //write querie for all
 $sql = 'SELECT name,email,id FROM users';
 $result = mysqli_query($conn,$sql); 
-$blogs = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>
@@ -17,15 +17,15 @@ mysqli_close($conn);
 <?php include('include/header.php')?>
 <div class="container">
           <div class="row">
-			<?php foreach($blogs as $blog) : ?>
+			<?php foreach($users as $user) : ?>
                <div class="col s6">
 				<div class="card z-depth-0">
                     <div class="card-content center">
-						<h6><?php echo htmlspecialchars($blog['name']); ?></h6>
-							<?php echo htmlspecialchars($blog['email'])?>
+						<h6><?php echo htmlspecialchars($user['name']); ?></h6>
+							<?php echo htmlspecialchars($user['email'])?>
 					</div>
 					<div class="card-action right-align">
-						<a class="brand-text" href="blog-edit.php?id=<?php echo $blog ['id'] ?>">more info</a>
+						<a class="brand-text" href="blog-edit.php?id=<?php echo $user ['id'] ?>">more info</a>
 					</div>
 				</div>
 			   </div>

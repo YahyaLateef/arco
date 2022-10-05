@@ -100,6 +100,10 @@ div.content {
   margin-top:20px;
   margin-left:150px;
 }
+.card img{
+  height:200px;
+  width:200px;
+}
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;

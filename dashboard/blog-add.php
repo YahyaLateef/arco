@@ -1,17 +1,22 @@
 <?php
-include('include/db_connect.php');
-$content = $user_id ="";
-$errors = array('content'=>"",'user_id'=>"");
-if(isset($_POST['submit'])){
-    //check username
-    if(empty($_POST['content'])){
-        $errors['content'] = 'a username is required <br  />';
-    }else{
-        $content = $_POST['content'];
-        if(!preg_match('/^[a-zA-Z\s]+$/', $content)){
-            $errors['content'] = 'content must be letters and spaces only <br  />';
-        }
-    }
+// Database configuration  
+$dbHost     = "localhost";  
+$dbUsername = "yahya";  
+$dbPassword = "1234";  
+$dbName     = "blog-table";  
+  
+// Create database connection  
+$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);  
+  
+// Check connection  
+if ($db->connect_error) {  
+  die("Connection failed: " . $db->connect_error);  
+}
+$content = "";
+$errors = array('content'=>"");
+// If file upload form is submitted 
+$status = $statusMsg = ''; 
+if(isset($_POST["submit"])){ 
     $status = 'error'; 
     if(!empty($_FILES["image"]["name"])) { 
         // Get file info 
@@ -22,14 +27,10 @@ if(isset($_POST['submit'])){
         $allowTypes = array('jpg','png','jpeg','gif'); 
         if(in_array($fileType, $allowTypes)){ 
             $image = $_FILES['image']['tmp_name']; 
-            $imgContent = addslashes(file_get_contents($image)); 
-         
-            // Insert image content into database 
-            $sql = "INSERT into blogs (images-blog) VALUES ('$imgContent')"; 
-             
-            if($sql){ 
+            $imgContent = addslashes(file_get_contents($image));
+            
+            if($allowTypes){ 
                 $status = 'success'; 
-                $statusMsg = "File uploaded successfully."; 
             }else{ 
                 $statusMsg = "File upload failed, please try again."; 
             }  
@@ -39,24 +40,23 @@ if(isset($_POST['submit'])){
     }else{ 
         $statusMsg = 'Please select an image file to upload.'; 
     } 
-    if(array_filter($errors)){
-      echo 'there are errors in the form';
-    }else{
-        $content = mysqli_real_escape_string($conn,$_POST['content']);
-        //create sqli
-        $sql  = "INSERT INTO blogs(content) VALUES('$content')";
-        //save to db
-        if(mysqli_query($conn,$sql)){
-
+    
+    if(empty($_POST["content"])) { 
+            $errors['content'] = 'content is required <br  />';
         }else{
-            echo 'query error' . mysqli_error($conn);
-            
-       }
-        echo 'form is valid';
+            $content = $_POST['content'];
+            if(!preg_match('/^[a-zA-Z\s]+$/', $content)){
+                $errors['content'] = 'Title must be letters and spaces only <br  />';
+                
+            }
+        } 
+        $insert = $db->query("INSERT into blogs(images,content) VALUES ('$imgContent','$content')");
         header('location:index.php');
     }
-    //post check end
-}
+
+ 
+// Display status message 
+echo $statusMsg; 
 
 
 ?>
