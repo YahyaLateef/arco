@@ -21,7 +21,7 @@ if(isset($_POST['delete'])){
 //check
 if(isset($_GET['id'])){
 $id = mysqli_real_escape_string($conn,$_GET['id']);
-$sql = "SELECT id,images,content,created_at,user_id FROM blogs WHERE id = $id";
+$sql = "SELECT id,images,content,created_at,title FROM blogs WHERE id = $id";
 $result = mysqli_query($conn,$sql);
 $blogs = mysqli_fetch_assoc($result);
 mysqli_free_result($result);
@@ -35,6 +35,7 @@ mysqli_close($conn);
 <?php include('include/header.php')?>
 <div class="container center grey-text">
    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blogs['images']); ?>">
+   <h2><?php echo($blogs['title']); ?></h2>
    <h3><?php echo($blogs['content']); ?></h3>
    <h5><?php echo($blogs['created_at']); ?></h5>
 <form action="blog-edit.php" method="POST">

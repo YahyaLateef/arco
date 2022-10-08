@@ -185,9 +185,9 @@ mysqli_close($conn);
               font-size: 15px;
               font-weight: 400;
               line-height: 2;
-              margin: 0;" class="brand-text"><?php echo ($user['content']); ?></p>
+              margin: 0;" class="brand-text"><?php echo substr($user['content'],0,100); ?></p>
             <div class="card-action right-align">
-						  <a class="read" href="blog-edit.php?id=<?php echo ($user['id']);?>">Read more</a>
+						  <a class="read" href="post-detail.php?id=<?php echo ($user['id']);?>">Read more</a>
 					  </div>
       <?php }?> 
 		    </div>

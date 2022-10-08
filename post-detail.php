@@ -1,3 +1,144 @@
+<?php
+// connect to the database
+$conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
+
+// check connection
+if(!$conn){
+    echo 'Connection error: '. mysqli_connect_error();
+}
+
+if(isset($_POST['delete'])){
+    $id_to_delete = mysqli_real_escape_string($conn,$_POST['id_to_delete']);
+    $sql = "UPDATE blogs SET is_active=0 WHERE id = $id_to_delete";
+    if(mysqli_query($conn,$sql)){
+        //success
+        header('Location:index.php');
+    }{
+        //failiure
+        echo 'query error' . mysqli_error($conn);
+    }
+}
+//check
+if(isset($_GET['id'])){
+$id = mysqli_real_escape_string($conn,$_GET['id']);
+// $sql = "SELECT id,images,content,created_at,title FROM blogs WHERE id = $id";
+$sql = "SELECT blogs.id,users.name, blogs.content, blogs.images, blogs.created_at,blogs.title FROM `blogs` INNER JOIN users ON users.user_id=blogs.user_id WHERE blogs.id = '$id' ";
+$result = mysqli_query($conn,$sql);
+$blogs = mysqli_fetch_assoc($result);
+mysqli_free_result($result);
+mysqli_close($conn);
+}
+$author_name = $email = $comment ="";
+$errors = array('email'=>"",'author_name'=>"",'comment'=>"");
+if(isset($_POST['submit'])){
+    //check email
+    if(empty($_POST['email'])){
+       $errors['email'] = 'an email is required <br  />';
+    }else{
+        $email = $_POST['email'];
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $errors['email'] = 'email must be a valid email address <br  />';
+        }
+    }
+    //check username
+    if(empty($_POST['author_name'])){
+        $errors['author_name'] = 'a name is required <br  />';
+    }else{
+        $author_name = $_POST['author_name'];
+        if(!preg_match('/^[a-zA-Z\s]+$/', $author_name)){
+            $errors['author_name'] = 'Title must be letters and spaces only <br  />';
+        }
+    }
+    //check password
+    if(empty($_POST['comment'])){
+        $errors['comment'] = 'a comment is required <br  />';
+    }else{
+        $comment = $_POST['comment'];
+        if(!preg_match("/^[a-zA-Z\s]+$/", $comment)){
+            $errors['comment'] = 'comment must not have numbers';
+
+        }
+    }
+    if(array_filter($errors)){
+      echo 'there are errors in the form';
+    }else{
+        $email = mysqli_real_escape_string($conn,$_POST['email']);
+        $author_name = mysqli_real_escape_string($conn,$_POST['author_name']);
+        $comment = mysqli_real_escape_string($conn,$_POST['comment']);
+        //create sqli
+        $sql  = "INSERT INTO comments(author_name,email,comment) VALUES('$author_name','$email','$comment')";
+        //save to db
+        if(mysqli_query($conn,$sql)){
+
+        }else{
+            echo 'query error' . mysqli_error($conn);
+            
+       }
+        echo 'form is valid';
+    }
+    //post check end
+}
+$sql = 'SELECT comment,author_name,created_at,id FROM comments';
+$result = mysqli_query($conn,$sql); 
+$coms = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_free_result($result);
+//mysqli_close($conn);
+$name_replier = $reply = $comment_id ="";
+$errors = array('reply'=>"",'name_replier'=>"",'comment_id'=>"");
+if(isset($_POST['submit1'])){
+    //check email
+    if(empty($_POST['reply'])){
+       $errors['reply'] = 'an reply is required <br  />';
+    }else{
+        $reply = $_POST['reply'];
+        if(!preg_match('/^[a-zA-Z\s]+$/', $reply)){
+            $errors['reply'] = 'Reply must be letters and spaces only <br  />';
+        }
+    }
+    //check username
+    if(empty($_POST['name_replier'])){
+        $errors['name_replier'] = 'a name is required <br  />';
+    }else{
+        $name_replier = $_POST['name_replier'];
+        if(!preg_match('/^[a-zA-Z\s]+$/', $name_replier)){
+            $errors['name_replier'] = 'Title must be letters and spaces only <br  />';
+        }
+    }
+    //check password
+    if(empty($_POST['comment_id'])){
+        $errors['comment_id'] = 'a comment id is required <br  />';
+    }else{
+        $comment_id = $_POST['comment_id'];
+        if(!preg_match("/^[1-9][0-9]?$|^100$/", $comment_id)){
+            $errors['comment_id'] = 'comment id must not have letters';
+
+        }
+    }
+    if(array_filter($errors)){
+      echo 'there are errors in the form';
+    }else{
+        $reply = mysqli_real_escape_string($conn,$_POST['reply']);
+        $name_replier = mysqli_real_escape_string($conn,$_POST['name_replier']);
+        $comment_id = mysqli_real_escape_string($conn,$_POST['comment_id']);
+        //create sqli
+        $sql  = "INSERT INTO replies(name_replier,reply,comment_id) VALUES ('$name_replier','$reply','$comment_id')";
+        //save to db
+        if(mysqli_query($conn,$sql)){
+
+        }else{
+            echo 'query error' . mysqli_error($conn);
+            
+       }
+        echo 'form is valid';
+    }
+    //post check end
+}
+$sql = "SELECT reply,name_replier,created_at,comment_id,id FROM replies WHERE comment_id = 2";
+$result = mysqli_query($conn,$sql); 
+$replies = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_free_result($result);
+//mysqli_close($conn);
+?>
 <html lang="en">
 <head>
   <title>Archo</title>
@@ -9,6 +150,79 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
+  <style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+   background-color: transparent;
+   border: none;
+  color: white;
+  /*padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px; */
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
 </head>
 <body style="background: #181818;">
   <div class="cursor"></div>
@@ -68,20 +282,18 @@
       </div>
     </div>
     <div class="image-start">
-
-      <img src="assets/img/single.jpg" style="height:100%;">
-
+      <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blogs['images']); ?>" style="height:100%;"/>
     </div>
     <div class="content pt-20">
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="cont">
             <div class="spacial">
-              <p>Never ever think of giving up. Winners never quit and quitters never win. Take all negative words out of your mental dictionary and focus on the solutions with utmost conviction and patience. The battle is never lost until you've abandon your vision.</p>
+              <p><?php echo($blogs['content']); ?></p>
             </div>
-            <p>the main component of a healthy environment for self esteem is that it needs be nurturing. The main compont of a healthy environment for self esteem is that it needs be nurturing. The main component of a healthy env for self esteem The main compont be nurturing It should provide unconditional warmth. The main component of a healthy env for self esteem The main compont be nurturing It should provide unconditional</p>
+            <p><?php echo($blogs['content']); ?></p>
             <h6 class="spacial">- We all intend to plan ahead.</h6>
-            <p>We all intend to plan ahead, but too often let the day-to-day minutia get in the way of making a calendar for the year. Sure, you can't know every detail to anticipate. Heck, you can't know half the priorities that will pop up in any particular month. But you can plan for big picture seasonality, busy-times, and events.</p>
+            <p><?php echo($blogs['content']); ?></p>
             <ul class="spacial">
               <li><span style="margin-right: 10px;
                 font-weight: 500;
@@ -100,17 +312,17 @@
                 font-size: 13px;">05</span> The main component of a healthy env for self esteem.</li>
             </ul>
             <div class="quotes text-center">
-              <p>Never ever think of giving up. Winners never quit and quitters never win. Take all negative words out of your mental dictionary and focus on the solutions with utmost conviction and patience. The battle is never lost until you've abandon your vision.</p>
+              <p><?php echo($blogs['content']); ?></p>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-10">
  
-                  <img src="assets/img/single.jpg" alt="" style="height: 200px;"></div></div><div class="col-md-6">
-                    <div class="mb-10"><img src="assets/img/single.jpg" alt="" style="height: 200px;"></div>
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blogs['images']); ?>" style="height: 200px;"></div></div><div class="col-md-6">
+                    <div class="mb-10"><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blogs['images']); ?>" style="height: 200px;"></div>
                   </div>
                 </div>
-                <p style="border-bottom: 1px solid #9f9f9f9f;">We all intend to plan ahead, but too often let the day-to-day minutia get in the way of making a calendar for the year. Sure, you can't know every detail to anticipate. Heck, you can't know half the priorities that will pop up in any particular month. But you can plan for big picture seasonality, busy-times, and events.</p>
+                <p style="border-bottom: 1px solid #9f9f9f9f;"><?php echo($blogs['content']); ?></p>
               <div class="share-info">
                 <div class="social">
                   <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -135,7 +347,7 @@
                  </div>
                  <div class="col-md-9">
                   <div class="info2">
-                    <h6><span class="auth">AUTHOR :</span> Jorden Griffin</h6>
+                    <h6><span class="auth">AUTHOR :</span><?php echo htmlspecialchars($blogs['name']); ?></h6>
                     <p style="font-size:16px;">the main component of a healthy environment for self esteem is that it needs be nurturing. The main compont of a healthy environment.</p>
                     <div class="social1">
                       <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -165,9 +377,11 @@
           </div>
           <div class="comments-area">
             <h5>Comments:</h5>
+            <?php foreach($coms as $com){ ?>
             <div class="row" style="padding: 30px 0;
             margin: 30px 0;
             border-bottom: 1px solid #333;">
+            
               <div class="col-md-12">
                 <div class="comet"></div>
                 <div class="row">
@@ -180,50 +394,40 @@
                   </div>
                   <div class="col-md-11">
                     <div class="comet-info">
-                      <h6>Jorden Griffin</h6><br><span> 6 Aug 2022</span>
-                      <span class="replay">
-                        <a href="/blog-details/#">
-                          Replay 
-                          <i class="fas fa-reply"></i>
-                        </a>
-                      </span>
-                      <p class="same">the main component of a healthy environment for self esteem is that it needs be nurturing. The main compont of a<br>healthy environment.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row" style="padding: 30px 0;
-            margin: 30px 0;">
-              <div class="col-md-10 col-md-offset-2" style="border-bottom: 1px solid #333;">
-                <div class="comet"></div>
-                <div class="row">
-                  <div class="col-md-1">
-                    <div class="comet-img">
- 
-                      <img src="assets/img/post-author.jpg" style="width: 100%; height: 100px;">
+                      <h6><?php echo ($com['author_name']); ?></h6><br><span><?php echo ($com['created_at']); ?></span>
+                      <button class="open-button replay" onclick="openForm()" >Reply</button>
 
-                    </div>
-                  </div>
-                  <div class="col-md-11">
-                    <div class="comet-info">
-                      <h6>Jorden Griffin</h6><br><span> 6 Aug 2022</span>
-                      <span class="replay">
-                        <a href="/blog-details/#">
-                          Replay 
-                          <i class="fas fa-reply"></i>
-                        </a>
-                      </span>
-                      <p class="same" style="font-size: 16px;">the main component of a healthy environment for self esteem is that it needs be nurturing. The main compont of a<br>healthy environment.</p>
+<div class="form-popup" id="myForm">
+  <form action="post-detail.php" class="form-container" method="post" enctype="multipart/form-data">
+    <h1>Reply</h1>
+
+    <label>Author name:</label>
+    <div class="red-text"><?php echo $errors['name_replier']; ?></div>
+    <input type="text" name="name_replier" value="<?php echo $name_replier ?>" class="form-control">
+    <label>Reply:</label>
+    <div class="red-text"><?php echo $errors['reply']; ?></div>
+    <input type="text" name="reply" value="<?php echo $reply ?>" class="form-control">
+    <label>Comment NO:</label>
+    <div class="red-text"><?php echo $errors['comment_id']; ?></div>
+    <input type="text" name="comment_id" value="<?php echo $comment_id ?>" class="form-control">
+              <input type="submit" name="submit1" value="submit1"  class="btn">
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+                      <p class="same"><?php echo ($com['comment']);?></p>
+                      <p class="same">COMMENT NO :<?php echo ($com['id']);?></p>
                     </div>
                   </div>
                 </div>
               </div>
+            
             </div>
-            <div class="row" style="padding: 30px 0;
+            <?php foreach($replies as $replie){ ?>
+              <div class="row" style="padding: 30px 0;
             margin: 30px 0;
             border-bottom: 1px solid #333;">
-              <div class="col-md-12">
+            
+              <div class="col-md-10 offeset-md-2">
                 <div class="comet"></div>
                 <div class="row">
                   <div class="col-md-1">
@@ -235,44 +439,39 @@
                   </div>
                   <div class="col-md-11">
                     <div class="comet-info">
-                      <h6>Jorden Griffin</h6><br><span> 6 Aug 2022</span>
-                      <span class="replay">
-                        <a href="/blog-details/#">
-                          Replay 
-                          <i class="fas fa-reply"></i>
-                        </a>
-                      </span>
-                      <p class="same">the main component of a healthy environment for self esteem is that it needs be nurturing. The maincompont of a<br>healthy environment.</p>
+                      <h6><?php echo ($replie['name_replier']); ?></h6><br><span><?php echo ($replie['created_at']); ?></span>
+                      <p class="same">Reply NO :<?php echo ($replie['id']);?></p>
+                      <p class="same"><?php echo ($replie['reply']);?></p>
                     </div>
                   </div>
                 </div>
               </div>
+            
             </div>
+            <?php  }  ?>
+            <?php } ?>
           </div>
           <div class="comment-form">
-            <form>
-              <div class="form-group">
+          <form  action="post-detail.php" method="post" enctype="multipart/form-data">
+              <!-- <div class="form-group">
                 <label for="Message"></label>
           <textarea class="form-control" id="textAreaExample2" rows="5" placeholder=" Your Message"></textarea>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="Name"></label>
-         <input type="name" class="form-control" id="Name" aria-describedby="nameHelp" placeholder="Your Name">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="Email"></label>
-         <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Your Email">
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary get" style="font-size: 16px;
+              </div> -->
+              <label>Author name:</label>
+    <div class="red-text"><?php echo $errors['author_name']; ?></div>
+    <input type="text" name="author_name" value="<?php echo $author_name ?>" class="form-control">
+    <label>Email:</label>
+    <div class="red-text"><?php echo $errors['email']; ?></div>
+    <input type="text" name="email" value="<?php echo $email ?>" class="form-control">
+    <label>Comment:</label>
+    <div class="red-text"><?php echo $errors['comment']; ?></div>
+    <input type="text" name="comment" value="<?php echo $comment ?>" class="form-control">
+              <input type="submit" name="submit" value="submit"  style="font-size: 16px;
               font-weight: 500;
               letter-spacing: 1px;
               position: absolute;
               top: 88px;
-    left: -95px;
+    left: 350px;
               width: 100%;
               height: 100%;
               z-index: 2;
@@ -286,7 +485,7 @@
               background-color: #c5a47e;
               border:2px solid black;
               margin-left: 6em;
-          margin-top: -5em;">Submit</button>
+          margin-top: -5em;">
             </form>
           </div>
         </div>
@@ -419,6 +618,15 @@ padding: 100px 0;">
     </div>
   </div>
 </section>
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
 <script>
   const updateProperties = (elem, state) => {
 elem.style.setProperty('--x', `${state.x}px`)

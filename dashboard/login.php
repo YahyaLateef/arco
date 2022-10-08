@@ -5,9 +5,10 @@ $conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
 if(!$conn){
     echo 'Connection error: '. mysqli_connect_error();
 }
+session_start();
 $name = $email = $password ="";
 $errors = array('email'=>"",'name'=>"",'password'=>"");
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])< 0){
     //check email
     if(empty($_POST['email'])){
        $errors['email'] = 'an email is required <br  />';

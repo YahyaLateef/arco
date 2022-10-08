@@ -19,30 +19,17 @@ mysqli_close($conn);
   <div class="row">
   <?php foreach($users as $user){?>
     <div class="col s12">
-    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height: auto;"/> 
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"/> 
 	      <div class="row">
       <?php if($user['is_active'] == 1){?>
         <div class="col-lg-2"  style=" margin-top: 2em;">
         <a class="bert"><?php echo ($user['created_at']); ?></a>  
         </div>
         <div class="col-lg-10" style=" margin-top: 2em;">
-        <div class="tags">
-                <a href="#">WordPress</a>
-                <a href="#">Themeforest</a>
-                <a href="#">Archo</a>
-              </div>
-            <h4 style="font-weight: 700;
-    line-height: 1.6;
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: xx-large;"><?php echo ($user['title']); ?></h4>
-            <p  style="color: #9f9f9f;
-              font-size: 15px;
-              font-weight: 400;
-              line-height: 2;
-              margin: 0;" class="brand-text"><?php echo ($user['content']); ?></p>
+            <h4><?php echo ($user['title']); ?></h4>
+            <p class="brand-text"><?php echo ($user['content']); ?></p>
             <div class="card-action right-align">
-						  <a class="read" href="blog-edit.php?id=<?php echo ($user['id']);?>"></a>
+						  <a class="read" href="blog-edit.php?id=<?php echo ($user['id']);?>">read more</a>
 					  </div>
       <?php }?> 
 		    </div>
