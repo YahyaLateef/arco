@@ -59,11 +59,12 @@ if(isset($_POST["submit"])){
                 
             }
         } 
-        $insert = $db->query("INSERT into blogs(images,conten,title) VALUES ('$imgContent','$content','$title')");
+        $insert = $db->query("INSERT into blogs(images,content,title) VALUES ('$imgContent','$content','$title')");
         header('location:index.php');
+        
     }
-
- 
+session_start();
+echo $_SESSION["user_id"];
 // Display status message 
 echo $statusMsg; 
 

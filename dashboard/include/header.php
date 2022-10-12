@@ -130,8 +130,7 @@ div.content {
   </button>
   <div class="dropdown-container">
     <a href="../dashboard/blog-add.php">Add a Blog</a>
-    <a href="../dashboard/blog-edit.php">Edit Blog</a>
-    <a href="../dashboard/blogs.php">View Blogs</a>
+    <a href="../blogs.php">View Blogs</a>
   </div>
   <a href="../contact.php">Contact</a>
   <a href="../about.php">About</a>

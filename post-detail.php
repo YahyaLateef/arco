@@ -26,7 +26,7 @@ $sql = "SELECT blogs.id,users.name, blogs.content, blogs.images, blogs.created_a
 $result = mysqli_query($conn,$sql);
 $blogs = mysqli_fetch_assoc($result);
 mysqli_free_result($result);
-mysqli_close($conn);
+// mysqli_close($conn);
 }
 $author_name = $email = $comment ="";
 $errors = array('email'=>"",'author_name'=>"",'comment'=>"");

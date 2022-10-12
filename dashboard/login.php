@@ -1,61 +1,50 @@
 <?php 
+session_start();
 // connect to the database
 $conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
 // check connection
 if(!$conn){
     echo 'Connection error: '. mysqli_connect_error();
 }
-session_start();
-$name = $email = $password ="";
-$errors = array('email'=>"",'name'=>"",'password'=>"");
-if(isset($_POST['submit'])< 0){
-    //check email
+$errors = array('email'=>"",'name'=>"",'password'=>"",'id'=>"");
+if(isset($_POST['submit'])){
+    $id = $_POST['id'];
+    $emailid = $_POST['email'];
     if(empty($_POST['email'])){
-       $errors['email'] = 'an email is required <br  />';
+        $errors['email'] = 'an email is required';
     }else{
-        $email = $_POST['email'];
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($emailid, FILTER_VALIDATE_EMAIL)){
             $errors['email'] = 'email must be a valid email address <br  />';
         }
     }
-    //check username
+    $name = $_POST['name'];
     if(empty($_POST['name'])){
-        $errors['name'] = 'a name is required <br  />';
+        $errors['name'] = 'a name is required';
     }else{
-        $name = $_POST['name'];
-        if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
-            $errors['name'] = 'Title must be letters and spaces only <br  />';
+        if(!preg_match( '/^[A-Za-z]+$/' ,$name)){
+            $errors['name'] = 'name must be letters only <br  />';
         }
     }
-    //check password
+    $password = $_POST['password'];
     if(empty($_POST['password'])){
-        $errors['password'] = 'atleast one password is required <br  />';
+        $errors['password'] = 'a password  is required';
     }else{
-        $password = $_POST['password'];
-        if(!preg_match("/^\d+$/", $password)){
-            $errors['password'] = 'password must not have spaces or letters';
-
+        if(!preg_match( '/^([1-9][0-9]{1,3}|10000)$/' ,$password)){
+            $errors['password'] = 'password must be numbers only <br  />';
         }
     }
     if(array_filter($errors)){
-      echo 'there are errors in the form';
-    }else{
-        $email = mysqli_real_escape_string($conn,$_POST['email']);
-        $username = mysqli_real_escape_string($conn,$_POST['name']);
-        $password = mysqli_real_escape_string($conn,$_POST['password']);
-        //create sqli
-        $sql  = "INSERT INTO users(name,email,password) VALUES('$name','$email','$password')";
-        //save to db
-        if(mysqli_query($conn,$sql)){
-
-        }else{
-            echo 'query error' . mysqli_error($conn);
-            
-       }
-        echo 'form is valid';
-        header('location:index.php');
+        echo 'there are errors in the form';
+      }else{
+    $sql = "SELECT count(*) as total FROM `users` WHERE email = '.$emailid.'AND user_id = '$id' AND name = '.$name.' AND password = '$password'";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        $_SESSION["id"] = $id;
+     $_SESSION["email"] = $emailid;
+     $_SESSION["name"] = $name;
+     header("Location: index.php");
+     die;}
     }
-    //post check end
 }
 ?>
 <!DOCTYPE html>
@@ -84,16 +73,17 @@ body {
     <body>
     <section>
         <div class="container grey-text">
-            <form class="white" action="login.php" method="POST">
+            <form  method="POST" class="white">
+            <input type="hidden" name="id" placeholder="">
                 <label>Username:</label>
-                <div class="red-text"><?php echo $errors['name']; ?></div>
-                <input type="text" name="name" value="<?php echo $name ?>">
+                <p class="redtext"><?php echo $errors['name'] ?></p>
+                <input type="text" name="name" placeholder="">
                 <label>Your email:</label>
-                <div class="red-text"><?php echo $errors['email'];  ?></div>
-                <input type="text" name="email" value="<?php echo $email ?>">
+                <p class="redtext"><?php echo $errors['email'] ?></p>
+                <input type="text" name="email"  placeholder="">
                 <label>Password</label>
-                <div class="red-text"><?php echo $errors['password']; ?></div>
-                <input type="text" name="password" value="<?php echo $password ?>">
+                <p class="redtext"><?php echo $errors['password'] ?></p>
+                <input type="text" name="password"  placeholder="">
                 <div class="center">
                 <input type="submit" name="submit" value="submit" class="btn brand a-depth-0">
                 </div>

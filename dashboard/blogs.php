@@ -13,16 +13,23 @@ mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      .rai{
+        margin-bottom:5em;
+      }
+    </style>
+  </head>
 <?php include('include/header.php')?>
 <div class="container" style="width: 60%;
   margin: auto;">
   <div class="row">
   <?php foreach($users as $user){?>
-    <div class="col s12">
+    <div class="col s12 rai">
     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"/> 
 	      <div class="row">
       <?php if($user['is_active'] == 1){?>
-        <div class="col-lg-2"  style=" margin-top: 2em;">
+        <div class="col-lg-2"  style=" margin-top: 5em;">
         <a class="bert"><?php echo ($user['created_at']); ?></a>  
         </div>
         <div class="col-lg-10" style=" margin-top: 2em;">
