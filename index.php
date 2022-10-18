@@ -84,7 +84,7 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="blogs.php" class="gret">Blogs</a></li>
-          <li><a href="post-detail.php" class="gret1">Post-Details</a></li>
+          <li><a href="post-detail.php?id=<?php echo 3 ?>" class="gret1">Post-Details</a></li>
         </ul>
       </li>
       <li class="nav-item">

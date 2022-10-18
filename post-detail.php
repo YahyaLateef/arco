@@ -29,37 +29,37 @@ mysqli_free_result($result);
 // mysqli_close($conn);
 }
 $author_name = $email = $comment ="";
-$errors = array('email'=>"",'author_name'=>"",'comment'=>"");
+$prob = array('email'=>"",'author_name'=>"",'comment'=>"");
 if(isset($_POST['submit'])){
     //check email
     if(empty($_POST['email'])){
-       $errors['email'] = 'an email is required <br  />';
+       $prob['email'] = 'an email is required <br  />';
     }else{
         $email = $_POST['email'];
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $errors['email'] = 'email must be a valid email address <br  />';
+            $prob['email'] = 'email must be a valid email address <br  />';
         }
     }
     //check username
     if(empty($_POST['author_name'])){
-        $errors['author_name'] = 'a name is required <br  />';
+        $prob['author_name'] = 'a name is required <br  />';
     }else{
         $author_name = $_POST['author_name'];
         if(!preg_match('/^[a-zA-Z\s]+$/', $author_name)){
-            $errors['author_name'] = 'Title must be letters and spaces only <br  />';
+            $prob['author_name'] = 'Title must be letters and spaces only <br  />';
         }
     }
     //check password
     if(empty($_POST['comment'])){
-        $errors['comment'] = 'a comment is required <br  />';
+        $prob['comment'] = 'a comment is required <br  />';
     }else{
         $comment = $_POST['comment'];
         if(!preg_match("/^[a-zA-Z\s]+$/", $comment)){
-            $errors['comment'] = 'comment must not have numbers';
+            $prob['comment'] = 'comment must not have numbers';
 
         }
     }
-    if(array_filter($errors)){
+    if(array_filter($prob)){
       echo 'there are errors in the form';
     }else{
         $email = mysqli_real_escape_string($conn,$_POST['email']);
@@ -243,7 +243,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="blogs.php">Blogs</a></li>
-          <li><a href="post-detail.php">Post-Details</a></li>
+          <li><a href="post-detail.php?id=<?php echo 3 ?>">Post-Details</a></li>
         </ul>
       </li>
       <li><a href="contact.php">Contact</a></li>
@@ -398,7 +398,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                       <button class="open-button replay" onclick="openForm()" >Reply</button>
 
 <div class="form-popup" id="myForm">
-  <form action="post-detail.php" class="form-container" method="post" enctype="multipart/form-data">
+  <form action="post-detail.php?id=<?php echo $blogs['id']?>" class="form-container" method="post" enctype="multipart/form-data">
     <h1>Reply</h1>
 
     <label>Author name:</label>
@@ -410,7 +410,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <label>Comment NO:</label>
     <div class="red-text"><?php echo $errors['comment_id']; ?></div>
     <input type="text" name="comment_id" value="<?php echo $comment_id ?>" class="form-control">
-              <input type="submit" name="submit1" value="submit1"  class="btn">
+              <input type="submit" name="submit1" value="submit1"  class="btn" >
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
@@ -452,19 +452,19 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <?php } ?>
           </div>
           <div class="comment-form">
-          <form  action="post-detail.php" method="post" enctype="multipart/form-data">
+          <form  action="post-detail.php?id=<?php echo $blogs['id']?>" method="post" enctype="multipart/form-data">
               <!-- <div class="form-group">
                 <label for="Message"></label>
           <textarea class="form-control" id="textAreaExample2" rows="5" placeholder=" Your Message"></textarea>
               </div> -->
               <label>Author name:</label>
-    <div class="red-text"><?php echo $errors['author_name']; ?></div>
+    <div class="red-text"><?php echo $prob['author_name']; ?></div>
     <input type="text" name="author_name" value="<?php echo $author_name ?>" class="form-control">
     <label>Email:</label>
-    <div class="red-text"><?php echo $errors['email']; ?></div>
+    <div class="red-text"><?php echo $prob['email']; ?></div>
     <input type="text" name="email" value="<?php echo $email ?>" class="form-control">
     <label>Comment:</label>
-    <div class="red-text"><?php echo $errors['comment']; ?></div>
+    <div class="red-text"><?php echo $prob['comment']; ?></div>
     <input type="text" name="comment" value="<?php echo $comment ?>" class="form-control">
               <input type="submit" name="submit" value="submit"  style="font-size: 16px;
               font-weight: 500;
@@ -485,7 +485,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
               background-color: #c5a47e;
               border:2px solid black;
               margin-left: 6em;
-          margin-top: -5em;">
+          margin-top: -5em;" href="post-detail.php?id=<?php echo $blogs['id']?>">
             </form>
           </div>
         </div>

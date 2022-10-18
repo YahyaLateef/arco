@@ -12,7 +12,7 @@ $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 if ($db->connect_error) {  
   die("Connection failed: " . $db->connect_error);  
 }
-$content = $title = "";
+$content = $title = $user_id = "";
 $errors = array('content'=>"",'title'=>"");
 // If file upload form is submitted 
 $status = $statusMsg = ''; 
@@ -59,7 +59,9 @@ if(isset($_POST["submit"])){
                 
             }
         } 
-        $insert = $db->query("INSERT into blogs(images,content,title) VALUES ('$imgContent','$content','$title')");
+        session_start();
+         $user_id  =  $_SESSION["user_id"];
+        $insert = $db->query("INSERT into blogs(images,content,title,user_id) VALUES ('$imgContent','$content','$title','$user_id')");
         header('location:index.php');
         
     }
@@ -67,8 +69,6 @@ session_start();
 echo $_SESSION["user_id"];
 // Display status message 
 echo $statusMsg; 
-
-
 ?>
 <!DOCTYPE html>
 <html>

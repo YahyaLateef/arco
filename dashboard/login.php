@@ -6,14 +6,14 @@ $conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
 if(!$conn){
     echo 'Connection error: '. mysqli_connect_error();
 }
-$errors = array('email'=>"",'name'=>"",'password'=>"",'id'=>"");
+$errors = array('email'=>"",'name'=>"",'password'=>"");
 if(isset($_POST['submit'])){
-    $id = $_POST['id'];
-    $emailid = $_POST['email'];
+    $user_id = $_POST["user_id"];
+    $email = $_POST['email'];
     if(empty($_POST['email'])){
         $errors['email'] = 'an email is required';
     }else{
-        if(!filter_var($emailid, FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $errors['email'] = 'email must be a valid email address <br  />';
         }
     }
@@ -36,15 +36,18 @@ if(isset($_POST['submit'])){
     if(array_filter($errors)){
         echo 'there are errors in the form';
       }else{
-    $sql = "SELECT count(*) as total FROM `users` WHERE email = '.$emailid.'AND user_id = '$id' AND name = '.$name.' AND password = '$password'";
-    $result = $conn->query($sql);
+    $sql = "SELECT  * , count(*) as total FROM `users` WHERE email = '$email' AND name = '$name' AND password = '$password'";
+    $result = mysqli_query($conn,$sql);
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
     if($result->num_rows > 0){
-        $_SESSION["id"] = $id;
-     $_SESSION["email"] = $emailid;
+     $_SESSION["user_id"] = $users[0]["user_id"];
+     $_SESSION["email"] = $email;
      $_SESSION["name"] = $name;
      header("Location: index.php");
-     die;}
+     die;
+}
     }
+echo    $_SESSION["user_id"] ;
 }
 ?>
 <!DOCTYPE html>
@@ -55,7 +58,7 @@ if(isset($_POST['submit'])){
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
-  background:#00008b;
+  background:#f;
 }
 .brand{
 	  	background: #cbb09c !important;
@@ -74,7 +77,7 @@ body {
     <section>
         <div class="container grey-text">
             <form  method="POST" class="white">
-            <input type="hidden" name="id" placeholder="">
+            <input type="hidden" name="user_id" placeholder="">
                 <label>Username:</label>
                 <p class="redtext"><?php echo $errors['name'] ?></p>
                 <input type="text" name="name" placeholder="">

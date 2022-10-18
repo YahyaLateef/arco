@@ -5,7 +5,10 @@ $conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
 if(!$conn){
     echo 'Connection error: '. mysqli_connect_error();
 }
-$sql = 'SELECT blogs.id,users.name,users.email, blogs.content, blogs.images, blogs.created_at, blogs.is_active,blogs.title FROM `blogs` INNER JOIN users ON users.user_id=blogs.user_id; ';
+session_start();
+echo   $_SESSION["user_id"];
+$user_id  =  $_SESSION["user_id"];
+$sql = "SELECT blogs.id,users.name,users.email, blogs.content, blogs.images, blogs.created_at, blogs.is_active,blogs.title FROM `blogs` INNER JOIN users ON users.user_id=blogs.user_id  ; ";
 $result = mysqli_query($conn,$sql); 
 $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
@@ -42,7 +45,7 @@ mysqli_close($conn);
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="blogs.php">Blogs</a></li>
-              <li><a href="post-detail.php">Post-Details</a></li>
+              <li><a href="post-detail.php?id=<?php echo 3 ?>">Post-Details</a></li>
             </ul>
           </li>
           <li><a href="contact.php">Contact</a></li>

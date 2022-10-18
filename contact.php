@@ -30,7 +30,7 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="blogs.php">Blogs</a></li>
-          <li><a href="post-detail.php">Post-Details</a></li>
+          <li><a href="post-detail.php?id=<?php echo 3 ?>">Post-Details</a></li>
         </ul>
       </li>
       <li><a href="contact.php">Contact</a></li>
