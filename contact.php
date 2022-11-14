@@ -1,3 +1,69 @@
+<?php 
+// connect to the database
+$conn = mysqli_connect('localhost', 'yahya', '1234', 'blog-table');
+// check connection
+if(!$conn){
+    echo 'Connection error: '. mysqli_connect_error();
+}
+$name = $email = $message ="";
+$errors = array('email'=>"",'name'=>"",'message'=>"");
+if(isset($_POST['submit'])){
+    //check email
+    if(empty($_POST['email'])){
+       $errors['email'] = 'an email is required <br  />';
+    }else{
+        $email = $_POST['email'];
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $errors['email'] = 'email must be a valid email address <br  />';
+        }
+    }
+    //check username
+    if(empty($_POST['name'])){
+        $errors['name'] = 'a name is required <br  />';
+    }else{
+        $name = $_POST['name'];
+        if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
+            $errors['name'] = 'Title must be letters and spaces only <br  />';
+        }
+    }
+    //check password
+    if(empty($_POST['message'])){
+        $errors['message'] = 'atleast one message is required <br  />';
+    }else{
+        $message = $_POST['message'];
+        if(!preg_match("/^\d+$/", $message)){
+            $errors['message'] = 'message must not have spaces or letters';
+
+        }
+    }
+    if(array_filter($errors)){
+      echo 'there are errors in the form';
+    }else{
+        $email = mysqli_real_escape_string($conn,$_POST['email']);
+        $username = mysqli_real_escape_string($conn,$_POST['name']);
+        $message = mysqli_real_escape_string($conn,$_POST['message']);
+       //create sqli
+       $sql  = "INSERT INTO users(name,email) VALUES('$name','$email')";
+       session_start();
+         $toemail = $_SESSION['email'];
+         $to = $toemail;
+         $body = "From :".$username . "\r\n";
+         $body = "From :".$username . "\r\n";
+         $body = "From :".$username . "\r\n";
+        mail($to,$message,$body);
+       //save to db
+       if(mysqli_query($conn,$sql)){
+
+       }else{
+           echo 'query error' . mysqli_error($conn);
+           
+      }
+       echo 'form is valid';
+   }
+   //post check end
+}
+?>
+
 <html lang="en">
 <head>
   <title>Archo</title>
@@ -8,7 +74,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body style="background: #181818;">
   <div class="cursor"></div>
@@ -113,38 +179,22 @@
       <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=600&amp;hl=en&amp;q=Louvre museum, 75001 Paris, فرنسا  &amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embedmapgenerator.com/">embed google maps in website</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:600px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:600px;}.gmap_iframe {height:600px!important;}</style></div>
     </div>
     <div class="col-lg-6" style="padding: 120px 5%;">
-      <form class="formula">
-        <div class="form-group"></div>
-         <label for="Name"></label>
-         <input type="name" class="form-control" id="Name" aria-describedby="nameHelp" placeholder="Name">
-         <label for="Email"></label>
-         <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Email">
-          <label for="Message"></label>
-          <textarea class="form-control" id="textAreaExample1" rows="4" placeholder="Message"></textarea>
-          
+    <div class="container grey-text">
+            <form class="white" action="contact.php" method="POST">
+                <label>Username:</label>
+                <div class="red-text"><?php echo $errors['name']; ?></div>
+                <input type="text" name="name" value="<?php echo $name ?>">
+                <label>Your email:</label>
+                <div class="red-text"><?php echo $errors['email'];  ?></div>
+                <input type="text" name="email" value="<?php echo $email ?>">
+                <label>Password</label>
+                <div class="red-text"><?php echo $errors['message']; ?></div>
+                <input type="text" name="message" value="<?php echo $message ?>">
+                <div class="center">
+                <input type="submit" name="submit" value="submit" class="btn brand a-depth-0">
+                </div>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary bbs" style="font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        position: absolute;
-        top: -1px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        width: 170px;
-        height: 50px;
-        text-align: center;
-        line-height: 34px;
-        font-family: 'Jost', sans-serif;
-        position: relative;
-        color: black;
-        background-color: #c5a47e;
-        border:2px solid black;
-        margin-left: 6em;
-    margin-top: -5em;
-    ">Send Message</button>
-      </form>
     </div>
   </div>
 </section>

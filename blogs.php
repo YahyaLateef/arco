@@ -12,7 +12,6 @@ $sql = "SELECT blogs.id,users.name,users.email, blogs.content, blogs.images, blo
 $result = mysqli_query($conn,$sql); 
 $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
-mysqli_close($conn);
 ?>
 <html lang="en">
 <head>
@@ -24,6 +23,79 @@ mysqli_close($conn);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/577c3f1cbb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="test.js"></script>
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 100%;
+  margin: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
 </head>
 <body style="background: #181818;">
   <div class="cursor"></div>
@@ -67,111 +139,68 @@ mysqli_close($conn);
     </div>
   </div>
 </section>
-  
-<section style="margin-top: 10em;padding: 120px 0px;">
-  <!-- <div class="container" style="width: 60%;
-  margin: auto;">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="divs-main"></div>
-  
-         <img src="assets/img/couch.jpg" style="width: 86.5%;height: auto;">
-
+<section>
+  <div class="container">
+  <form method="POST">
+                <input  type="text" name="search">
+                <button type="submit" name="submit" class="remove" onclick="removeDiv(this);">Submit</button>
+</form>
+|<?php   
+$con = new PDO("mysql:host=localhost; dbname=blog-table;",'yahya','1234');
+if(isset($_POST['submit'])){
+    $str = $_POST['search'];
+    $sth = $con ->prepare("SELECT * FROM `blogs` WHERE title = '$str'");
+    $sth ->setFetchMode(PDO:: FETCH_OBJ);
+    $sth ->execute();
+    if($row = $sth->fetch()){
+        ?>
+        <div class="row">
+        <div class="col-lg-2"  style=" margin-top: 2em;">
+        <a class="  date" style="margin-right:5em;"><?php echo $row->created_at; ?></a>  
         </div>
-        <div class="row" style="margin-bottom:8em; ">
-          <div class="col-lg-2" style=" margin-top: 2em;">
-            <a href="/archo/post-detail.php" class="bert">
-              <span class="num">06</span><br>
-              <span class="date">Aug 2022</span>
-            </a>
-          </div>
-          <div class="col-lg-10" style=" margin-top: 2em;">
-            <div class="tags">
-              <a href="#">WordPress</a>
-              <a href="#">Themeforest</a>
-              <a href="#">Archo</a>
-            </div>
-            <h4 class="head-for"><a href="/archo/post-detail.php">Build a Beautiful Blog With Ease</a></h4>
-            <p style="color: #9f9f9f;
-            font-size: 15px;
-            font-weight: 400;
-            line-height: 2;
-            margin: 0;">Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love<br>of what you are doing.</p>
-            <a href="/archo/post-detail.php" class="read">READ MORE</a>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="divs-main"></div>
-  
-         <img src="assets/img/blog1.jpg" style="width: 86.5%;height: auto;">
-
-        </div>
-          <div class="row" style="margin-bottom:8em; ">
-            <div class="col-lg-2" style=" margin-top: 2em;">
-              <a href="/archo/post-detail.php" class="bert">
-                <span  class="num">06</span><br>
-                <span class="date">Aug 2022</span>
-              </a>
-            </div>
-            <div class="col-lg-10" style=" margin-top: 2em;">
-              <div class="tags">
+        <div class="col-lg-10" style=" margin-top: 2em;">
+        <div class="tags">
                 <a href="#">WordPress</a>
                 <a href="#">Themeforest</a>
                 <a href="#">Archo</a>
               </div>
-              <h4 class="head-for"><a href="/archo/post-detail.php">Build a Beautiful Blog With Ease</a></h4>
-              <p style="color: #9f9f9f;
+            <h4 style="font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: xx-large;"><?php echo $row-> title; ?></h4>
+            <p  style="color: #9f9f9f;
               font-size: 15px;
               font-weight: 400;
               line-height: 2;
-              margin: 0;">Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love<br>of what you are doing.</p>
-              <a href="/archo/post-detail.php" class="read">READ MORE</a>
-            </div>
-          </div>
-        </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="divs-main"></div>
-  
-         <img src="assets/img/small-couch.jpg" style="width: 86.5%;height: auto;">
-
-        </div>
-          <div class="row" style="margin-bottom:8em;">
-            <div class="col-lg-2" style=" margin-top: 2em;">
-              <a href="/archo/post-detail.php" class="bert">
-                <span  class="num">06</span><br>
-                <span class="date">Aug 2022</span>
-              </a>
-            </div>
-            <div class="col-lg-10" style=" margin-top: 2em;">
-              <div class="tags">
-                <a href="#">WordPress</a>
-                <a href="#">Themeforest</a>
-                <a href="#">Archo</a>
-              </div>
-              <h4 class="head-for"><a href="/archo/post-detail.php">Build a Beautiful Blog With Ease</a></h4>
-              <p style="color: #9f9f9f;
-              font-size: 15px;
-              font-weight: 400;
-              line-height: 2;
-              margin: 0;">Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love<br>of what you are doing.</p>
-              <a href="/archo/post-detail.php" class="read">READ MORE</a>
-            </div>
-          </div>
-        </div>
-       -->
-       <div class="container" style="width: 60%;
-  margin: auto;">
-  <div class="row">
-  <?php foreach($users as $user){?>
+              margin: 0;" class="brand-text"><?php echo $row->content; ?></p>
+            <div class="card-action right-align">
+					  </div>
+		    </div>
+        <?php 
+    }
+      else{
+        echo "Name does not exist";
+      }
+}
+?>
+  </div>
+</section>
+<section style="margin-top: 10em;padding: 120px 0px;" class="image">
+       <!-- MAIN (Center website) -->
+<div class="main">
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+<?php foreach($users as $user){?>
+  <?php if($user['id'] < 6){ ?>
+  <div class="column nature">
+    <div class="content">
     <div class="col s12">
-    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height: auto;"/> 
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height: 20em;"/> 
 	      <div class="row">
       <?php if($user['is_active'] == 1){?>
         <div class="col-lg-2"  style=" margin-top: 2em;">
-        <a class="bert  date"><?php echo ($user['created_at']); ?></a>  
+        <a class="  date" style="margin-right:5em;"><?php echo ($user['created_at']); ?></a>  
         </div>
         <div class="col-lg-10" style=" margin-top: 2em;">
         <div class="tags">
@@ -196,16 +225,135 @@ mysqli_close($conn);
 		    </div>
 	    </div>
     </div>
-    <?php }?> 
- 
-      <div class="buttons-page">
-        <button type="button" class="btn btn-active" style="padding: 0px;border: 1px solid #c5a47e;">1</button>
-        <button type="button" class="btn btn-default" style="padding: 0px;">2</button>
-        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
-      </div>
-    </div>   
     </div>
-</div> 
+  </div>
+     <?php } ?>
+    <?php }?> 
+    <?php foreach($users as $user){?>
+      <?php if($user['id'] < 11 and $user['id'] > 5){ ?>
+  <div class="column cars">
+    <div class="content">
+    <div class="col s12">
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height:20em;"/> 
+	      <div class="row">
+      <?php if($user['is_active'] == 1){?>
+        <div class="col-lg-2"  style=" margin-top: 2em;">
+        <a class="  date" style="margin-right:5em;"><?php echo ($user['created_at']); ?></a>  
+        </div>
+        <div class="col-lg-10" style=" margin-top: 2em;">
+        <div class="tags">
+                <a href="#">WordPress</a>
+                <a href="#">Themeforest</a>
+                <a href="#">Archo</a>
+              </div>
+            <h4 style="font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: xx-large;"><?php echo ($user['title']); ?></h4>
+            <p  style="color: #9f9f9f;
+              font-size: 15px;
+              font-weight: 400;
+              line-height: 2;
+              margin: 0;" class="brand-text"><?php echo substr($user['content'],0,100); ?></p>
+            <div class="card-action right-align">
+						  <a class="read" href="post-detail.php?id=<?php echo ($user['id']);?>">Read more</a>
+					  </div>
+      <?php }?> 
+		    </div>
+	    </div>
+    </div>
+    </div>
+  </div>
+  <?php }?>
+    <?php }?> 
+    <?php foreach($users as $user){?>
+      <?php if($user['id'] < 16 and $user['id'] > 10){ ?>
+  <div class="column people">
+    <div class="content">
+    <div class="col s12">
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height: 20em;"/> 
+	      <div class="row">
+      <?php if($user['is_active'] == 1){?>
+        <div class="col-lg-2"  style=" margin-top: 2em;">
+        <a class="date" style="margin-right:5em;"><?php echo ($user['created_at']); ?></a>  
+        </div>
+        <div class="col-lg-10" style=" margin-top: 2em;">
+        <div class="tags">
+                <a href="#">WordPress</a>
+                <a href="#">Themeforest</a>
+                <a href="#">Archo</a>
+              </div>
+            <h4 style="font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: xx-large;"><?php echo ($user['title']); ?></h4>
+            <p  style="color: #9f9f9f;
+              font-size: 15px;
+              font-weight: 400;
+              line-height: 2;
+              margin: 0;" class="brand-text"><?php echo substr($user['content'],0,100); ?></p>
+            <div class="card-action right-align">
+						  <a class="read" href="post-detail.php?id=<?php echo ($user['id']);?>">Read more</a>
+					  </div>
+      <?php }?> 
+		    </div>
+	    </div>
+    </div>
+    </div>
+  </div>
+  <?php }?>
+    <?php }?> 
+    <?php foreach($users as $user){?>
+      <?php if($user['id'] < 21 and $user['id'] > 15){ ?>
+  <div class="column roar">
+    <div class="content">
+    <div class="col s12">
+    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['images']); ?>"  style="width: 86.5%;height: 20em;"/> 
+	      <div class="row">
+      <?php if($user['is_active'] == 1){?>
+        <div class="col-lg-2"  style=" margin-top: 2em;">
+        <a class="  date" style="margin-right:5em;"><?php echo ($user['created_at']); ?></a>  
+        </div>
+        <div class="col-lg-10" style=" margin-top: 2em;">
+        <div class="tags">
+                <a href="#">WordPress</a>
+                <a href="#">Themeforest</a>
+                <a href="#">Archo</a>
+              </div>
+            <h4 style="font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: xx-large;"><?php echo ($user['title']); ?></h4>
+            <p  style="color: #9f9f9f;
+              font-size: 15px;
+              font-weight: 400;
+              line-height: 2;
+              margin: 0;" class="brand-text"><?php echo substr($user['content'],0,100); ?></p>
+            <div class="card-action right-align">
+						  <a class="read" href="post-detail.php?id=<?php echo ($user['id']);?>">Read more</a>
+					  </div>
+      <?php }?> 
+		    </div>
+	    </div>
+    </div>
+    </div>
+  </div>
+  <?php }?>
+    <?php }?> 
+<!-- END GRID -->
+</div>
+<div id="myBtnContainer" class="center">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('nature')">1</button>
+  <button class="btn" onclick="filterSelection('cars')">2</button>
+  <button class="btn" onclick="filterSelection('people')">3</button>
+  <button class="btn" onclick="filterSelection('roar')">4</button>
+</div>
+<!-- END MAIN -->
+</div>
 </section>
 <section style="background: #252531;
 width: calc(100% - 50px);
@@ -330,6 +478,57 @@ padding: 100px 0;">
     </div>
   </div>
 </section>
+<script type="text/javascript">
+        function removeDiv(btn){
+            ((btn.parentNode).parentNode).removeChild(btn.parentNode);
+        }
+    </script>
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
 <script>
   const updateProperties = (elem, state) => {
 elem.style.setProperty('--x', `${state.x}px`)
